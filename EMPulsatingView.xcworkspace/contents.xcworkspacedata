@@ -4,7 +4,4 @@
    <FileRef
       location = "group:EMPulsatingViewExample/EMPulsatingViewExample.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:EMPulsatingViewExample/../EMPulsatingView/EMPulsatingView.xcodeproj">
-   </FileRef>
 </Workspace>

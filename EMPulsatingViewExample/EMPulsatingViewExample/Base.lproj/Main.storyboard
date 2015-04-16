@@ -18,7 +18,44 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBm-X8-Nr9" customClass="EMPulsatingUIView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73h-Aq-hxX">
+                                        <rect key="frame" x="20" y="550" width="35" height="30"/>
+                                        <state key="normal" title="Solid">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTouchButtonSolid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CD6-Iy-Hy7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18c-Jx-euK">
+                                        <rect key="frame" x="95" y="550" width="96" height="30"/>
+                                        <state key="normal" title="Solid with line">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTouchButtonSolidWithLine:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f6H-Ye-lVt"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9U-ba-ze0">
+                                        <rect key="frame" x="231" y="550" width="59" height="30"/>
+                                        <state key="normal" title="Gradient">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTouchButtonGradient:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RoW-jJ-Ius"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="E9U-ba-ze0" firstAttribute="leading" secondItem="18c-Jx-euK" secondAttribute="trailing" constant="40" id="Nh0-pJ-nfe"/>
+                                    <constraint firstAttribute="bottom" secondItem="73h-Aq-hxX" secondAttribute="bottom" constant="20" id="Rqm-ch-rmy"/>
+                                    <constraint firstItem="73h-Aq-hxX" firstAttribute="leading" secondItem="iBm-X8-Nr9" secondAttribute="leading" constant="20" id="XXa-gt-CAL"/>
+                                    <constraint firstItem="18c-Jx-euK" firstAttribute="leading" secondItem="73h-Aq-hxX" secondAttribute="trailing" constant="40" id="aGi-n6-dhp"/>
+                                    <constraint firstAttribute="bottom" secondItem="18c-Jx-euK" secondAttribute="bottom" constant="20" id="lJM-Vh-ZTY"/>
+                                    <constraint firstAttribute="bottom" secondItem="E9U-ba-ze0" secondAttribute="bottom" constant="20" id="sNQ-c4-sKD"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

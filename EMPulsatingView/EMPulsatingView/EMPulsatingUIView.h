@@ -8,12 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    EMPulsatingViewStyleSolid = 1,
+    EMPulsatingViewStyleGradient = 2
+} EMPulsatingViewStyle;
+
 @interface EMPulsatingUIView : UIView
 
+@property (nonatomic) EMPulsatingViewStyle style;
 @property (nonatomic) UIColor *colorFrom;
 @property (nonatomic) UIColor *colorTo;
+@property (nonatomic) UIColor *color;
+@property (nonatomic) UIColor *lineColor;
 @property (nonatomic) int circleCount;
 @property (nonatomic) NSTimeInterval speed;
 
 - (void)startAnimation;
+- (void)stopAnimation;
 @end

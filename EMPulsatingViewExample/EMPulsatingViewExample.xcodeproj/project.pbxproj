@@ -14,7 +14,8 @@
 		4E2751AF1ADF96CC00C4483B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E2751AE1ADF96CC00C4483B /* Images.xcassets */; };
 		4E2751B21ADF96CC00C4483B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E2751B01ADF96CC00C4483B /* LaunchScreen.xib */; };
 		4E2751BE1ADF96CC00C4483B /* EMPulsatingViewExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2751BD1ADF96CC00C4483B /* EMPulsatingViewExampleTests.m */; };
-		4E2751C81ADF96D400C4483B /* EMPulsatingView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E2751C71ADF96D400C4483B /* EMPulsatingView.framework */; };
+		4E961FF51ADFE11500A7A6C8 /* EMPulsatingView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E961FF01ADFE0F700A7A6C8 /* EMPulsatingView.framework */; };
+		4E961FF61ADFE11500A7A6C8 /* EMPulsatingView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E961FF01ADFE0F700A7A6C8 /* EMPulsatingView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,7 +26,49 @@
 			remoteGlobalIDString = 4E27519D1ADF96CC00C4483B;
 			remoteInfo = EMPulsatingViewExample;
 		};
+		4E961FEF1ADFE0F700A7A6C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E961FEA1ADFE0F700A7A6C8 /* EMPulsatingView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4E27516A1ADF942600C4483B;
+			remoteInfo = EMPulsatingView;
+		};
+		4E961FF11ADFE0F700A7A6C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E961FEA1ADFE0F700A7A6C8 /* EMPulsatingView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4E2751751ADF942600C4483B;
+			remoteInfo = EMPulsatingViewTests;
+		};
+		4E961FF31ADFE10200A7A6C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E961FEA1ADFE0F700A7A6C8 /* EMPulsatingView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E2751691ADF942600C4483B;
+			remoteInfo = EMPulsatingView;
+		};
+		4E961FF71ADFE11500A7A6C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4E961FEA1ADFE0F700A7A6C8 /* EMPulsatingView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E2751691ADF942600C4483B;
+			remoteInfo = EMPulsatingView;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4E961FF91ADFE11500A7A6C8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4E961FF61ADFE11500A7A6C8 /* EMPulsatingView.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4E27519E1ADF96CC00C4483B /* EMPulsatingViewExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMPulsatingViewExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +85,8 @@
 		4E2751BC1ADF96CC00C4483B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E2751BD1ADF96CC00C4483B /* EMPulsatingViewExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMPulsatingViewExampleTests.m; sourceTree = "<group>"; };
 		4E2751C71ADF96D400C4483B /* EMPulsatingView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EMPulsatingView.framework; path = "../EMPulsatingView/build/Debug-iphoneos/EMPulsatingView.framework"; sourceTree = "<group>"; };
+		4E961FDF1ADFDACE00A7A6C8 /* EMPulsatingView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = EMPulsatingView.framework; path = "/Users/erik.midander/Library/Developer/Xcode/DerivedData/EMPulsatingView-axpposoyvhyfoteyjljaukowtndn/Build/Products/Debug-iphoneos/EMPulsatingView.framework"; sourceTree = "<absolute>"; };
+		4E961FEA1ADFE0F700A7A6C8 /* EMPulsatingView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EMPulsatingView.xcodeproj; path = ../EMPulsatingView/EMPulsatingView.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E2751C81ADF96D400C4483B /* EMPulsatingView.framework in Frameworks */,
+				4E961FF51ADFE11500A7A6C8 /* EMPulsatingView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +111,8 @@
 		4E2751951ADF96CC00C4483B = {
 			isa = PBXGroup;
 			children = (
+				4E961FEA1ADFE0F700A7A6C8 /* EMPulsatingView.xcodeproj */,
+				4E961FDF1ADFDACE00A7A6C8 /* EMPulsatingView.framework */,
 				4E2751C71ADF96D400C4483B /* EMPulsatingView.framework */,
 				4E2751A01ADF96CC00C4483B /* EMPulsatingViewExample */,
 				4E2751BA1ADF96CC00C4483B /* EMPulsatingViewExampleTests */,
@@ -123,6 +170,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4E961FEB1ADFE0F700A7A6C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4E961FF01ADFE0F700A7A6C8 /* EMPulsatingView.framework */,
+				4E961FF21ADFE0F700A7A6C8 /* EMPulsatingViewTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -133,10 +189,13 @@
 				4E27519A1ADF96CC00C4483B /* Sources */,
 				4E27519B1ADF96CC00C4483B /* Frameworks */,
 				4E27519C1ADF96CC00C4483B /* Resources */,
+				4E961FF91ADFE11500A7A6C8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4E961FF41ADFE10200A7A6C8 /* PBXTargetDependency */,
+				4E961FF81ADFE11500A7A6C8 /* PBXTargetDependency */,
 			);
 			name = EMPulsatingViewExample;
 			productName = EMPulsatingViewExample;
@@ -190,6 +249,12 @@
 			mainGroup = 4E2751951ADF96CC00C4483B;
 			productRefGroup = 4E27519F1ADF96CC00C4483B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 4E961FEB1ADFE0F700A7A6C8 /* Products */;
+					ProjectRef = 4E961FEA1ADFE0F700A7A6C8 /* EMPulsatingView.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				4E27519D1ADF96CC00C4483B /* EMPulsatingViewExample */,
@@ -197,6 +262,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		4E961FF01ADFE0F700A7A6C8 /* EMPulsatingView.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = EMPulsatingView.framework;
+			remoteRef = 4E961FEF1ADFE0F700A7A6C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4E961FF21ADFE0F700A7A6C8 /* EMPulsatingViewTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = EMPulsatingViewTests.xctest;
+			remoteRef = 4E961FF11ADFE0F700A7A6C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4E27519C1ADF96CC00C4483B /* Resources */ = {
@@ -244,6 +326,16 @@
 			isa = PBXTargetDependency;
 			target = 4E27519D1ADF96CC00C4483B /* EMPulsatingViewExample */;
 			targetProxy = 4E2751B81ADF96CC00C4483B /* PBXContainerItemProxy */;
+		};
+		4E961FF41ADFE10200A7A6C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EMPulsatingView;
+			targetProxy = 4E961FF31ADFE10200A7A6C8 /* PBXContainerItemProxy */;
+		};
+		4E961FF81ADFE11500A7A6C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EMPulsatingView;
+			targetProxy = 4E961FF71ADFE11500A7A6C8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -349,9 +441,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/erik.midander/Dropbox/projekt/EMPulsatingView/EMPulsatingView/build/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/EMPulsatingView-axpposoyvhyfoteyjljaukowtndn/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = EMPulsatingViewExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -363,9 +457,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/erik.midander/Dropbox/projekt/EMPulsatingView/EMPulsatingView/build/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/EMPulsatingView-axpposoyvhyfoteyjljaukowtndn/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = EMPulsatingViewExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -426,6 +522,7 @@
 				4E2751C31ADF96CC00C4483B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4E2751C41ADF96CC00C4483B /* Build configuration list for PBXNativeTarget "EMPulsatingViewExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +531,7 @@
 				4E2751C61ADF96CC00C4483B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -23,6 +23,8 @@ CGRectMakeWithCenter(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 
 @implementation EMPulsatingUIView {
     float *_circles;
+    CGFloat _colorComponents[3];
+    CGFloat _lineColorComponents[3];
     CGFloat _colorComponentsFrom[3];
     CGFloat _colorComponentsTo[3];
     float startSize;
@@ -57,24 +59,32 @@ CGRectMakeWithCenter(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
         if (scale > 0 && scale <= 1.0) {
             float size = startSize + (endSize - startSize) * scale;
             
-            // Solid color
-            //CGContextSetFillColor(context, (CGFloat []){1.0, 0.0, 0.0, 1.0 - scale});
-            //[[UIBezierPath bezierPathWithOvalInRect:CGRectMakeWithCenter(halfSize, halfSize, size, size)] fill];
+            CGRect rect = CGRectMakeWithCenter(halfSize, halfSize, size, size);
+            if (_style == EMPulsatingViewStyleSolid) {
+                CGContextSetFillColor(context, (CGFloat []){_colorComponents[0], _colorComponents[1], _colorComponents[2], 1.0 - scale});
+                [[UIBezierPath bezierPathWithOvalInRect:rect] fill];
+            } else if (_style == EMPulsatingViewStyleGradient) {
+                CGFloat colors [] = {
+                    _colorComponentsFrom[0], _colorComponentsFrom[1], _colorComponentsFrom[2], 1.0 - scale,
+                    _colorComponentsTo[0], _colorComponentsTo[1], _colorComponentsTo[2], 1.0 - scale
+                };
+                
+                CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
+                CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
+                CGColorSpaceRelease(baseSpace);
+                
+                CGContextAddEllipseInRect(context, rect);
+                CGContextClip(context);
+                
+                CGContextDrawRadialGradient(context, gradient, CGPointMake(halfSize, halfSize), 0, CGPointMake(halfSize, halfSize), size, kCGGradientDrawsAfterEndLocation);
+                CGGradientRelease(gradient);
+            }
             
-            CGFloat colors [] = {
-                _colorComponentsFrom[0], _colorComponentsFrom[1], _colorComponentsFrom[2], 1.0 - scale,
-                _colorComponentsTo[0], _colorComponentsTo[1], _colorComponentsTo[2], 1.0 - scale
-            };
-            
-            CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
-            CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
-            CGColorSpaceRelease(baseSpace);
-            
-            CGContextAddEllipseInRect(context, CGRectMakeWithCenter(halfSize, halfSize, size, size));
-            CGContextClip(context);
-            
-            CGContextDrawRadialGradient(context, gradient, CGPointMake(halfSize, halfSize), 0, CGPointMake(halfSize, halfSize), size, kCGGradientDrawsAfterEndLocation);
-            CGGradientRelease(gradient);
+            if (_lineColor) {
+                CGContextSetStrokeColor(context, (CGFloat []){_lineColorComponents[0], _lineColorComponents[1], _lineColorComponents[2], 1.0 - scale});
+                [[UIBezierPath bezierPathWithOvalInRect:CGRectMakeWithCenter(halfSize, halfSize, size, size)] stroke];
+            }
+
         }
         
         scale += (delta / (float)_circleCount) / _speed;
@@ -108,8 +118,11 @@ CGRectMakeWithCenter(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 }
 
 - (void)setDefaults {
+    self.style = EMPulsatingViewStyleSolid;
     self.circleCount = 5;
     self.speed = 1.0;
+    self.lineColor = Nil;
+    self.color = [UIColor redColor];
     self.colorFrom = [UIColor colorWithRed:1.0 green:0.5 blue:0.5 alpha:1.0];
     self.colorTo = [UIColor redColor];
 }
@@ -131,6 +144,26 @@ CGRectMakeWithCenter(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
         _colorComponentsTo[0] = colorComponents[0];
         _colorComponentsTo[1] = colorComponents[1];
         _colorComponentsTo[2] = colorComponents[2];
+    }
+}
+
+- (void)setColor:(UIColor *)color {
+    _color = color;
+    if (CGColorGetNumberOfComponents(_color.CGColor)) {
+        const CGFloat *colorComponents = CGColorGetComponents(_color.CGColor);
+        _colorComponents[0] = colorComponents[0];
+        _colorComponents[1] = colorComponents[1];
+        _colorComponents[2] = colorComponents[2];
+    }
+}
+
+- (void)setLineColor:(UIColor *)color {
+    _lineColor = color;
+    if (CGColorGetNumberOfComponents(_lineColor.CGColor)) {
+        const CGFloat *colorComponents = CGColorGetComponents(_lineColor.CGColor);
+        _lineColorComponents[0] = colorComponents[0];
+        _lineColorComponents[1] = colorComponents[1];
+        _lineColorComponents[2] = colorComponents[2];
     }
 }
 
