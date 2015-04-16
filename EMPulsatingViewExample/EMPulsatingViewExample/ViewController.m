@@ -17,7 +17,7 @@
 @implementation ViewController
 
 - (void)viewDidAppear:(BOOL)animated {
-    [_pulsatingView startAnimationWithCircles:10 speed:1.0];
+    [_pulsatingView startAnimation];
 }
 
 @end

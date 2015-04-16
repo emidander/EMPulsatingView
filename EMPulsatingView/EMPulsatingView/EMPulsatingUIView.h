@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface EMPulsatingUIView : UIView
-- (void)startAnimationWithCircles:(int)circleCount speed:(NSTimeInterval)speed;
+
+@property (nonatomic) UIColor *colorFrom;
+@property (nonatomic) UIColor *colorTo;
+@property (nonatomic) int circleCount;
+@property (nonatomic) NSTimeInterval speed;
+
+- (void)startAnimation;
 @end

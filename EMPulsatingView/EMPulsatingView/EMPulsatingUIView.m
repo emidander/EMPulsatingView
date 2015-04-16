@@ -22,11 +22,22 @@ CGRectMakeWithCenter(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 @end
 
 @implementation EMPulsatingUIView {
-    int _circleCount;
     float *_circles;
+    CGFloat _colorComponentsFrom[3];
+    CGFloat _colorComponentsTo[3];
     float startSize;
     float endSize;
     float halfSize;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    [self setDefaults];
+    return [super initWithFrame:frame];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    [self setDefaults];
+    return [super initWithCoder:aDecoder];
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -51,8 +62,8 @@ CGRectMakeWithCenter(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
             //[[UIBezierPath bezierPathWithOvalInRect:CGRectMakeWithCenter(halfSize, halfSize, size, size)] fill];
             
             CGFloat colors [] = {
-                1.0, 0.5, 0.5, 1.0 - scale,
-                1.0, 0.0, 0.0, 1.0 - scale
+                _colorComponentsFrom[0], _colorComponentsFrom[1], _colorComponentsFrom[2], 1.0 - scale,
+                _colorComponentsTo[0], _colorComponentsTo[1], _colorComponentsTo[2], 1.0 - scale
             };
             
             CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
@@ -96,14 +107,40 @@ CGRectMakeWithCenter(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
     }
 }
 
-- (void)startAnimationWithCircles:(int)circleCount speed:(NSTimeInterval)speed {
+- (void)setDefaults {
+    self.circleCount = 5;
+    self.speed = 2.0;
+    self.colorFrom = [UIColor colorWithRed:1.0 green:0.5 blue:0.5 alpha:1.0];
+    self.colorTo = [UIColor redColor];
+}
+
+- (void)setColorFrom:(UIColor *)color {
+    _colorFrom = color;
+    if (CGColorGetNumberOfComponents(_colorFrom.CGColor)) {
+        const CGFloat *colorComponents = CGColorGetComponents(_colorFrom.CGColor);
+        _colorComponentsFrom[0] = colorComponents[0];
+        _colorComponentsFrom[1] = colorComponents[1];
+        _colorComponentsFrom[2] = colorComponents[2];
+    }
+}
+
+- (void)setColorTo:(UIColor *)color {
+    _colorTo = color;
+    if (CGColorGetNumberOfComponents(_colorTo.CGColor)) {
+        const CGFloat *colorComponents = CGColorGetComponents(_colorTo.CGColor);
+        _colorComponentsTo[0] = colorComponents[0];
+        _colorComponentsTo[1] = colorComponents[1];
+        _colorComponentsTo[2] = colorComponents[2];
+    }
+}
+
+- (void)startAnimation {
     
     startSize = 0.0;
     float smallestDimension = MIN(self.frame.size.width, self.frame.size.height);
     halfSize = smallestDimension / 2.0;
     endSize = smallestDimension;
 
-    _circleCount = circleCount;
     [self createCircles];
     
     [_displayLink invalidate];
