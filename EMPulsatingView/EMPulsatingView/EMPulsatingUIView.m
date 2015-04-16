@@ -27,9 +27,11 @@ CGRectMakeWithCenter(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
     CGFloat _lineColorComponents[3];
     CGFloat _colorComponentsFrom[3];
     CGFloat _colorComponentsTo[3];
-    float startSize;
-    float endSize;
-    float halfSize;
+    float _startSize;
+    float _endSize;
+    float _halfSize;
+    
+    int _firstIndex;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -51,15 +53,14 @@ CGRectMakeWithCenter(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
     NSTimeInterval delta = _displayLink.timestamp - lastDrawTime;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
-    static int firstIndex = 0;
     BOOL overflow = NO;
     for (int index = 0; index < _circleCount; index++) {
-        int circleIndex = (firstIndex + index) % _circleCount;
+        int circleIndex = (_firstIndex + index) % _circleCount;
         float scale = _circles[circleIndex];
         if (scale > 0 && scale <= 1.0) {
-            float size = startSize + (endSize - startSize) * scale;
+            float size = _startSize + (_endSize - _startSize) * scale;
             
-            CGRect rect = CGRectMakeWithCenter(halfSize, halfSize, size, size);
+            CGRect rect = CGRectMakeWithCenter(_halfSize, _halfSize, size, size);
             if (_style == EMPulsatingViewStyleSolid) {
                 CGContextSetFillColor(context, (CGFloat []){_colorComponents[0], _colorComponents[1], _colorComponents[2], 1.0 - scale});
                 [[UIBezierPath bezierPathWithOvalInRect:rect] fill];
@@ -76,13 +77,13 @@ CGRectMakeWithCenter(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
                 CGContextAddEllipseInRect(context, rect);
                 CGContextClip(context);
                 
-                CGContextDrawRadialGradient(context, gradient, CGPointMake(halfSize, halfSize), 0, CGPointMake(halfSize, halfSize), size, kCGGradientDrawsAfterEndLocation);
+                CGContextDrawRadialGradient(context, gradient, CGPointMake(_halfSize, _halfSize), 0, CGPointMake(_halfSize, _halfSize), size, kCGGradientDrawsAfterEndLocation);
                 CGGradientRelease(gradient);
             }
             
             if (_lineColor) {
                 CGContextSetStrokeColor(context, (CGFloat []){_lineColorComponents[0], _lineColorComponents[1], _lineColorComponents[2], 1.0 - scale});
-                [[UIBezierPath bezierPathWithOvalInRect:CGRectMakeWithCenter(halfSize, halfSize, size, size)] stroke];
+                [[UIBezierPath bezierPathWithOvalInRect:CGRectMakeWithCenter(_halfSize, _halfSize, size, size)] stroke];
             }
 
         }
@@ -95,7 +96,7 @@ CGRectMakeWithCenter(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
         _circles[circleIndex] = scale;
     }
     if (overflow) {
-        firstIndex++;
+        _firstIndex++;
     }
     lastDrawTime = _displayLink.timestamp;
 }
@@ -169,12 +170,13 @@ CGRectMakeWithCenter(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 
 - (void)startAnimation {
     
-    startSize = 0.0;
+    _startSize = 0.0;
     float smallestDimension = MIN(self.frame.size.width, self.frame.size.height);
-    halfSize = smallestDimension / 2.0;
-    endSize = smallestDimension;
+    _halfSize = smallestDimension / 2.0;
+    _endSize = smallestDimension;
 
     [self createCircles];
+    _firstIndex = 0;
     
     [_displayLink invalidate];
     _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(onFrame)];
