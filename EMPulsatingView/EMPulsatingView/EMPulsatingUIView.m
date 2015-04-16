@@ -77,7 +77,7 @@ CGRectMakeWithCenter(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
             CGGradientRelease(gradient);
         }
         
-        scale += delta / 5.0;
+        scale += (delta / (float)_circleCount) / _speed;
         if (scale > 1.0) {
             scale -= 1.0;
             overflow = YES;
@@ -109,7 +109,7 @@ CGRectMakeWithCenter(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
 
 - (void)setDefaults {
     self.circleCount = 5;
-    self.speed = 2.0;
+    self.speed = 1.0;
     self.colorFrom = [UIColor colorWithRed:1.0 green:0.5 blue:0.5 alpha:1.0];
     self.colorTo = [UIColor redColor];
 }
