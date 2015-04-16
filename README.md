@@ -1,3 +1,3 @@
 # EMPulsatingView
 
-An animated view with 'pulsating' circle for iOS.
+An animated view with 'pulsating' circles for iOS.
